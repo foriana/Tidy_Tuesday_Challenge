@@ -1,0 +1,75 @@
+---
+title: 'Tidy Tuesday #2'
+author: "Felicia Peterson"
+output: 
+  html_document:
+    df_print: paged
+    code_download: true
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+```
+
+
+```{r libraries}
+library(tidyverse)     # for graphing and data cleaning
+library(lubridate)     # for date manipulation
+library(ggthemes)      # for even more plotting themes
+library(janitor)       # for cleaning variable names
+theme_set(theme_minimal()) # My favorite ggplot() theme :)
+```
+
+
+
+## Data choice 2: 
+
+The second data set for this week is a little different. It is part of the `#DuBoisChallenge` where you will attempt to recreate visualizations made by W.E.B. DuBois for the 1900 Paris Exposition. This week it is even more important than usual to do some background reading. It minimum, please read the summary on the [TidyTuesday page](https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2022). There are some links on that page. I also like this [resource](https://publicdomainreview.org/collection/w-e-b-du-bois-hand-drawn-infographics-of-african-american-life-1900), which displays many of the graphs.
+
+
+
+```{r}
+# Read in the data for the week
+# Data for Challenge 1:
+school_enroll <- readr::read_csv('https://raw.githubusercontent.com/ajstarks/dubois-data-portraits/master/challenge/2022/challenge10/data.csv')
+
+
+```
+
+```{r}
+school_enroll %>% 
+  mutate(Percent_unenroll = 100 - `Percent Enrolled`) %>% 
+  pivot_longer(cols = starts_with("Percent"),
+               names_to = "Total_Children",
+               values_to = "Percentages") %>% 
+  ggplot(aes(x = Year, 
+             y = Percentages,
+             fill = Total_Children),
+         backgroundColor = "yellow",
+                removePanelGrid = TRUE,removePanelBorder = TRUE,
+                axisLine = c(0.5, "solid", "black")) +
+  geom_col() +
+  scale_x_continuous(position = "top") +
+  labs(title = "PROPORTION OF TOTAL NEGRO CHILDREN OF SCHOOL AGE WHO ARE ENROLLED IN THE PUBLIC SCHOOLS.",
+       subtitle = "PROPORTION DES ENFANTS NEGRES EN AGE D'ECOLE ENREGISTRES DANS LESECOLES PUBLIQUES.",
+       x = "", 
+       y = "",
+       fill = "") +
+  theme(legend.position = "bottom",
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_text(size = 20, face = "bold"),
+        panel.background = element_rect(fill = "#FFCC66"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  scale_fill_manual(values=c("#CC3300", "#000000"), 
+                    labels = c("PROPORTION OF CHILDREN ENROLLED", "PROPORTION OF CHILDREN NOT ENROLLED")) +
+  geom_text(aes(label = round(Percentages, digits = 4),
+                vjust = .01,
+                hjust = 1))
+
+```
+
+__A bar graph with data from the W.E.B. DuBois Tidy Tuesday 2022 Challenge on the proportion of school-aged children who are enrolled in public schools.__
+
