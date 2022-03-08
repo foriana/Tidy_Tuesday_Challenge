@@ -67,15 +67,33 @@ stations <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 ```
 
-```{r}
+```{r, fig.alt = "image"}
 
 #goal: twin cities alternative fuel mapping
 
+mn_stations <- stations %>%
+  filter(STATE == "MN", GROUPS_WITH_ACCESS_CODE == "Public", FUEL_TYPE_CODE == "ELEC")
 
+mn_stations
 
   
 ```
 
+```{r}
+mn_stations_map <- get_stamenmap(
+  bbox = c(left = -93.2952, bottom = 44.8184, right = -92.9169, top = 45.0609),
+  maptype = "toner",
+  zoom = 10)
+
+ggmap(mn_stations_map) + 
+  geom_point(data = mn_stations,
+             aes(x = Y, y = X, colour = "green"),
+             alpha = .75,
+             size = 2) +
+  theme_map() + 
+  theme(legend.background = element_blank())
+
+```
 
 Read more about the Alternative fuel stations data, including definitions of variables, [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-01/readme.md). 
 
