@@ -1,6 +1,6 @@
 ---
 title: 'Tidy Tuesday #3'
-author: "Put your name here"
+author: "Felicia Peterson"
 output: 
   html_document:
     df_print: paged
@@ -17,6 +17,14 @@ library(tidyverse)     # for graphing and data cleaning
 library(lubridate)     # for date manipulation
 library(ggthemes)      # for even more plotting themes
 theme_set(theme_minimal()) # My favorite ggplot() theme :)
+library(maps)          # for map data
+library(ggmap)         # for mapping points on maps
+#library(gplots)        # for col2hex() function
+library(RColorBrewer)  # for color palettes
+library(sf)            # for working with spatial data
+library(leaflet)       # for highly customizable mapping
+library(ggthemes)
+library(lubridate)
 ```
 
 ## Data choice 1: Freedom Data
@@ -58,6 +66,16 @@ stations <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 # stations <- tuesdata$stations
 
 ```
+
+```{r}
+
+#goal: twin cities alternative fuel mapping
+
+
+
+  
+```
+
 
 Read more about the Alternative fuel stations data, including definitions of variables, [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-01/readme.md). 
 
