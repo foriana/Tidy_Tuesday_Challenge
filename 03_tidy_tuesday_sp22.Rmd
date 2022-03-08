@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -80,7 +80,7 @@ mn_stations
   
 ```
 
-```{r}
+```{r, fig.alt = "Map of the Twin Cities Metro Area's Electric Car Fueling Stations"}
 mn_stations_map <- get_stamenmap(
   bbox = c(left = -93.2952, bottom = 44.8184, right = -92.9169, top = 45.0609),
   maptype = "toner",
