@@ -83,7 +83,7 @@ mn_stations
 ```{r}
 mn_stations_map <- get_stamenmap(
   bbox = c(left = -93.2952, bottom = 44.8184, right = -92.9169, top = 45.0609),
-  maptype = "toner-lite",
+  maptype = "toner",
   zoom = 10)
 
 ggmap(mn_stations_map) + 
