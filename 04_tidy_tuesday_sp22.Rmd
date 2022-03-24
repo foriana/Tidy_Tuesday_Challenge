@@ -1,0 +1,80 @@
+---
+title: 'Tidy Tuesday #4'
+author: "Put your name here"
+output: 
+  html_document:
+    df_print: paged
+    code_download: true
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+```
+
+```{r libraries}
+library(tidyverse)     # for graphing and data cleaning
+library(lubridate)     # for date manipulation
+library(ggthemes)      # for even more plotting themes
+theme_set(theme_minimal()) # My favorite ggplot() theme :)
+```
+
+## Data choice 1: Baby Names
+
+```{r}
+# Read in the data
+
+# Or read in the data manually
+
+babynames <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-22/babynames.csv')
+
+
+# If the code above gives an error, uncomment the code below and use it instead. 
+# You will need to install the tidytuesdayR package first.
+
+# library(tidytuesdayR)
+# 
+# tuesdata <- tidytuesdayR::tt_load('2022-03-22')
+# tuesdata <- tidytuesdayR::tt_load(2022, week = 12)
+# 
+# babynames <- tuesdata$babynames
+```
+
+This week's data should be familiar from previous exercises. There is data for both babynames from New Zealand and the US. Read more about it, including definitions of variables, [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-22/readme.md). 
+```{r}
+
+```
+
+
+
+## Data choice 2: ERASMUS EU Student Mobility
+
+```{r}
+
+# Read in the data
+
+
+erasmus <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-08/erasmus.csv')
+
+
+# If the code above gives an error, uncomment the code below and use it instead. 
+# You will need to install the tidytuesdayR package first.
+
+# library(tidytuesdayR)
+# 
+# tuesdata <- tidytuesdayR::tt_load('2022-03-08')
+# tuesdata <- tidytuesdayR::tt_load(2022, week = 10)
+# 
+# erasmus <- tuesdata$erasmus
+
+
+```
+
+Read more about the ERASMUS EU Student Mobility data, including definitions of variables, [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-08/readme.md). 
+
+## Instructions and tips
+
+Take a minute to plan out on paper or the white board what you want your plot to look like and then dive into the code. And make sure to read about what the variables are first! 
+
+When you are finished, please delete all the unneeded code and instructions and uncomment (delete the `#`) in the options section of code at the top. If you feel up for it, we encourage you to tweet out your graph with the `#TidyTuesday` hashtag and tag `@lisalendway` (Prof. Lisa) and `@Sintripetal` (Prof. Lauren). See the Tidy Tuesday description file if you want to use our `@MacTidyTuesday` Twitter account to do that. PLEASE take a moment to read the message at the top about alt text. If you want to post on Twitter, be sure to add that. If you need help, ask. Also, consider adding a caption or tag label with your name and source of the dataset. You can do this by adding something like: `labs(caption = "Plot created by YOURNAME, data from DATASOURCE")` to your plot code.
+
