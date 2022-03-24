@@ -1,6 +1,6 @@
 ---
 title: 'Tidy Tuesday #4'
-author: "Felicia"
+author: "Felicia Peterson"
 output: 
   html_document:
     df_print: paged
@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -65,58 +65,37 @@ new_babies <- babynames %>%
 ```
 
 
-```{r, fig.alt = "this is a graph"}
+```{r, fig.alt = "This gif shows the top 3 baby names from the baby names dataset collected from the US and New Zealand since the year 2000 onward. It shows the names Jacob, Michael, Matthew, Joshua, Hannah, Emily, Madison, Isabella, Ethan, Sophia, Olivia, William, Mason, Noah, Ava, Liam, and Emma starting high and then decreasing overtime in general."}
 
-new_babies %>% 
+bouncing_babies_gganim <- new_babies %>% 
   ggplot(aes(x = year, 
              y = n,
              color = name)) +
   geom_line() +
   geom_text(aes(label = name)) +
   labs(title = "Top 3 Baby Names in the US and New Zealand Since the Year 2000",
-       subtitle = "Name: {frame_along}",
+       subtitle = "Year: {frame_along}",
        x = "",
        y = "",
        color = "Name") +
   
   theme(legend.position = "none") + 
-  transition_reveal(year)
+  transition_reveal(as.integer(year))
+
+knitr::include_graphics("2000s_babies.gif")
 
 ```
-
-
-
-
 
 ```{r}
+animate(bouncing_babies_gganim, fps = 4)
+anim_save("2000s_babies.gif")
 
-scale_color_manual(values = c("tomatoes" = "darkred",
-                       "beans" = "springgreen4",
-                       "peas" = "yellowgreen",
-                       "zucchini" = "darkgreen")) +
-
-# Read in the data
-
-
-erasmus <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-08/erasmus.csv')
-
-
-# If the code above gives an error, uncomment the code below and use it instead. 
-# You will need to install the tidytuesdayR package first.
-
-# library(tidytuesdayR)
-# 
-# tuesdata <- tidytuesdayR::tt_load('2022-03-08')
-# tuesdata <- tidytuesdayR::tt_load(2022, week = 10)
-# 
-# erasmus <- tuesdata$erasmus
 
 
 ```
 
-Read more about the ERASMUS EU Student Mobility data, including definitions of variables, [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-08/readme.md). 
 
-## Instructions and tips
+
 
 Take a minute to plan out on paper or the white board what you want your plot to look like and then dive into the code. And make sure to read about what the variables are first! 
 
